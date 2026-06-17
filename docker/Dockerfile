@@ -1,11 +1,9 @@
-FROM openjdk:8u151-jdk-alpine3.7
+FROM eclipse-temurin:17-jdk-alpine
+
+WORKDIR /usr/src/app
+
+COPY target/shopping-cart-0.0.1-SNAPSHOT.jar /usr/src/app/app.jar
 
 EXPOSE 8070
 
-ENV APP_HOME /usr/src/app
-
-COPY target/shopping-cart-0.0.1-SNAPSHOT.jar $APP_HOME/app.jar
-
-WORKDIR $APP_HOME
-
-ENTRYPOINT exec java -jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
